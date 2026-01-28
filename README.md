@@ -61,10 +61,11 @@ kreis = Kreis(zentrum=p1, radius=10)
 print(f"Umfang Kreis:   {kreis.umfang:.2f}")  # Ausgabe: 62.83
 ```
 
+```mermaid
 graph TD
-Form[Form (ABC)] --> Polygon
-Form --> Ellipse
-Ellipse --> Kreis
+    Form[Form (ABC)] --> Polygon
+    Form --> Ellipse
+    Ellipse --> Kreis
 
     Polygon --> Dreieck
     Polygon --> Viereck
@@ -84,3 +85,4 @@ Ellipse --> Kreis
 
     style Quadrat fill:#f9f,stroke:#333,stroke-width:2px
     style Form fill:#eee,stroke:#333,stroke-dasharray: 5 5
+```

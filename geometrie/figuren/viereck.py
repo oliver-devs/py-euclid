@@ -50,7 +50,7 @@ class Trapez(Viereck):
         return (self.basis_a + self.basis_c) / 2 * self.hoehe
 
 
-# --- Ebene 1 (Symmetrie): Das Drachenviereck ---
+# --- Ebene 1 (Symmetrie): Das Drachen ---
 class Drachen(Viereck):
     """
     Ein Viereck, bei dem eine Diagonale Symmetrieachse ist.
@@ -84,3 +84,31 @@ class Drachen(Viereck):
         Viel schneller als die Gauß-Formel.
         """
         return (self.diag_e * self.diag_f) / 2.0
+
+
+# --- Ebene 2: Das Parallelogramm ---
+class Parallelogramm(Trapez):
+    """
+    Gegenüberliegende Seiten sind parallel und gleich lang.
+    Definiert durch Seite a, Seite b und den Winkel alpha (in Grad).
+    """
+
+    def __init__(self, a: float, b: float, alpha_grad: float):
+        # Wir müssen die Höhe h und die Verschiebung aus dem Winkel berechnen
+        rad = math.radians(alpha_grad)
+        h = b * math.sin(rad)
+        verschiebung = b * math.cos(rad)
+
+        # Ein Parallelogramm ist ein Trapez, bei dem oben (c) == unten (a) ist.
+        super().__init__(a, a, h, verschiebung)
+
+
+# --- Ebene 3: Die Raute ---
+class Raute(Parallelogramm):
+    """
+    Ein Parallelogramm mit 4 gleich langen Seiten (a = b).
+    (Mathematisch ist es AUCH ein Drachen!)
+    """
+
+    def __init__(self, a: float, alpha_grad: float):
+        super().__init__(a, a, alpha_grad)

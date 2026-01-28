@@ -6,7 +6,7 @@ sys.path.append(os.getcwd())
 
 from geometrie.primitive.elemente import Punkt
 from geometrie.figuren.dreieck import GleichseitigesDreieck
-from geometrie.figuren.viereck import Quadrat, Drachen
+from geometrie.figuren.viereck import Quadrat, Drachen, GleichschenkligesTrapez
 from geometrie.figuren.ellipse import Kreis
 
 
@@ -53,6 +53,12 @@ def main():
     print(f"Fläche:      {kreis.flaeche:.2f}")
 
     print("\n✅ Simulation erfolgreich beendet.")
+
+    # BONUS: Symmetrisches Trapez
+    sym_trapez = GleichschenkligesTrapez(a=10, c=6, h=4)
+    print_header("⚖️ Gleichschenkliges Trapez")
+    print(f"Unten: 10, Oben: 6, Höhe: 4")
+    print(f"Fläche:      {sym_trapez.flaeche:.2f} (Sollte 32.0 sein)")
 
 
 if __name__ == "__main__":

@@ -86,6 +86,19 @@ class Drachen(Viereck):
         return (self.diag_e * self.diag_f) / 2.0
 
 
+# --- Ebene 1b: Das gleichschenklige Trapez ---
+class GleichschenkligesTrapez(Trapez):
+    """
+    Ein Trapez, das symmetrisch ist.
+    Die Schenkel links und rechts sind gleich lang.
+    """
+
+    def __init__(self, a: float, c: float, h: float):
+        # Automatische Berechnung der Verschiebung für Symmetrie
+        verschiebung = (a - c) / 2
+        super().__init__(a, c, h, verschiebung)
+
+
 # --- Ebene 2: Das Parallelogramm ---
 class Parallelogramm(Trapez):
     """

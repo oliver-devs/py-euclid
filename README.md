@@ -61,19 +61,26 @@ kreis = Kreis(zentrum=p1, radius=10)
 print(f"Umfang Kreis:   {kreis.umfang:.2f}")  # Ausgabe: 62.83
 ```
 
-Form (ABC)
-├── Ellipse (Ramanujan)
-│ └── Kreis
-└── Polygon (Gauß-Formel)
-├── Dreieck
-│ ├── RechtwinkligesDreieck
-│ └── GleichschenkligesDreieck
-│ └── GleichseitigesDreieck
-└── Viereck
-└── Trapez
-├── GleichschenkligesTrapez
-└── Parallelogramm
-├── Raute
-│ └── Quadrat
-└── Rechteck
-└── Quadrat
+graph TD
+Form[Form (ABC)] --> Polygon
+Form --> Ellipse
+Ellipse --> Kreis
+
+    Polygon --> Dreieck
+    Polygon --> Viereck
+
+    Dreieck --> RechtwinkligesDreieck
+    Dreieck --> GleichschenkligesDreieck
+    GleichschenkligesDreieck --> GleichseitigesDreieck
+
+    Viereck --> Trapez
+    Trapez --> GleichschenkligesTrapez
+    Trapez --> Parallelogramm
+    Parallelogramm --> Raute
+    Parallelogramm --> Rechteck
+
+    Raute --> Quadrat
+    Rechteck --> Quadrat
+
+    style Quadrat fill:#f9f,stroke:#333,stroke-width:2px
+    style Form fill:#eee,stroke:#333,stroke-dasharray: 5 5

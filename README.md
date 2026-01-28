@@ -61,9 +61,16 @@ kreis = Kreis(zentrum=p1, radius=10)
 print(f"Umfang Kreis:   {kreis.umfang:.2f}")  # Ausgabe: 62.83
 ```
 
+## 🏗 Architektur & Klassenhierarchie
+
+Das Herzstück von `py-euclid` ist die konsequente objektorientierte Struktur.
+Das folgende Diagramm visualisiert die **Vererbungshierarchie** (Inheritance Tree) vom abstrakten Basis-Objekt bis zu den spezialisierten Formen.
+
+Es zeigt unter anderem das "Haus der Vierecke" und wie spezialisierte Klassen (z.B. `Quadrat`) Eigenschaften ihrer Elternklassen (`Rechteck`, `Raute`) erben und kombinieren.
+
 ```mermaid
 graph TD
-    Form[Form (ABC)] --> Polygon
+    Form["Form (ABC)"] --> Polygon
     Form --> Ellipse
     Ellipse --> Kreis
 

@@ -112,3 +112,34 @@ class Raute(Parallelogramm):
 
     def __init__(self, a: float, alpha_grad: float):
         super().__init__(a, a, alpha_grad)
+
+
+# --- Ebene 3: Das Rechteck ---
+class Rechteck(Parallelogramm):
+    """
+    Ein Parallelogramm mit 90° Winkeln.
+    Definiert durch Breite b und Höhe h.
+    """
+
+    def __init__(self, breite: float, hoehe: float):
+        super().__init__(breite, hoehe, 90)
+
+    @property
+    def flaeche(self) -> float:
+        """Optimierte Flächenformel: Breite * Höhe"""
+        # Wir greifen auf die berechneten Eckpunkte zu
+        breite = self.eckpunkte[1].x
+        hoehe = self.eckpunkte[2].y
+        return breite * hoehe
+
+
+# --- Ebene 4: Das Quadrat ---
+class Quadrat(Rechteck):
+    """
+    Das perfekte Viereck:
+    - Ist ein Rechteck (90° Winkel)
+    - Ist eine Raute (gleich lange Seiten)
+    """
+
+    def __init__(self, a: float):
+        super().__init__(a, a)

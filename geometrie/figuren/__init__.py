@@ -5,3 +5,4 @@ from .dreieck import (
     GleichschenkligesDreieck,
     GleichseitigesDreieck,
 )
+from .viereck import Viereck, Trapez

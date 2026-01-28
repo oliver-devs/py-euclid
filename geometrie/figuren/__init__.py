@@ -6,3 +6,4 @@ from .dreieck import (
     GleichseitigesDreieck,
 )
 from .viereck import Viereck, Trapez, Drachen, Parallelogramm, Raute, Rechteck, Quadrat
+from .ellipse import Ellipse, Kreis

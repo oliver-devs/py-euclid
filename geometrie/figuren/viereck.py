@@ -1,3 +1,4 @@
+import math
 from .polygon import Polygon
 from ..primitive.elemente import Punkt
 
@@ -47,3 +48,39 @@ class Trapez(Viereck):
         hier die einfache Trapez-Formel: (a + c) / 2 * h
         """
         return (self.basis_a + self.basis_c) / 2 * self.hoehe
+
+
+# --- Ebene 1 (Symmetrie): Das Drachenviereck ---
+class Drachen(Viereck):
+    """
+    Ein Viereck, bei dem eine Diagonale Symmetrieachse ist.
+    Definiert durch:
+    - e: Länge der Symmetrie-Diagonale (vertikal)
+    - f: Länge der Quer-Diagonale (horizontal)
+    - abstand_oben: Abstand vom Schnittpunkt zur oberen Ecke
+    """
+
+    def __init__(self, e: float, f: float, abstand_oben: float):
+        # Wir bauen es entlang der Y-Achse auf (Symmetrieachse)
+        # Punkt Oben (0, e - abstand_oben)
+        # Punkt Unten (0, -abstand_oben)
+        # Punkt Rechts (f/2, 0)
+        # Punkt Links (-f/2, 0)
+
+        p_oben = Punkt(0, e - abstand_oben)
+        p_rechts = Punkt(f / 2, 0)
+        p_unten = Punkt(0, -abstand_oben)
+        p_links = Punkt(-f / 2, 0)
+
+        # Reihenfolge gegen den Uhrzeigersinn: Unten, Rechts, Oben, Links
+        super().__init__(p_unten, p_rechts, p_oben, p_links)
+        self.diag_e = e
+        self.diag_f = f
+
+    @property
+    def flaeche(self) -> float:
+        """
+        Spezialformel für Drachen: (e * f) / 2
+        Viel schneller als die Gauß-Formel.
+        """
+        return (self.diag_e * self.diag_f) / 2.0

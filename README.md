@@ -8,7 +8,7 @@ Entwickelt mit Fokus auf saubere Architektur (OOP), Unveränderlichkeit (Immutab
 ## ✨ Features
 
 - **Pure Python:** Keine externen Abhängigkeiten (Zero Dependencies).
-- **Objektorientiertes Design:** Logische Vererbungshierarchien (z.B. `Viereck -> Trapez -> Parallelogramm -> Rechteck -> Quadrat`).
+- **Objektorientiertes Design:** Logische Vererbungshierarchien.
 - **Type Safety:** Durchgängige Nutzung von Type Hints und Dataclasses.
 - **Robust:** Unveränderliche primitive Datentypen (`frozen=True`) verhindern Seiteneffekte.
 - **Mathematische Präzision:**
@@ -29,3 +29,51 @@ cd py-euclid
 # 3. Paket installieren (im Editable-Mode)
 pip install -e .
 ```
+
+## 🚀 Verwendung
+
+Nach der Installation kann die Bibliothek in jedem Python-Skript importiert werden.
+
+```python
+from geometrie.primitive.elemente import Punkt
+from geometrie.figuren.viereck import Drachenviereck, Quadrat, GleichschenkligesTrapez
+from geometrie.figuren.ellipse import Kreis
+
+# 1. Punkte definieren (Immutable)
+p1 = Punkt(0, 0)
+
+# 2. Komplexe Formen erstellen
+# Ein Quadrat ist mathematisch ein Rechteck und eine Raute
+quadrat = Quadrat(a=5)
+print(f"Fläche Quadrat: {quadrat.flaeche}")  # Ausgabe: 25.0
+
+# 3. Spezielle Formen
+# Berechnung via Diagonalen (e, f)
+drachen = Drachenviereck(e=10, f=6, abstand_oben=2)
+print(f"Fläche Drache:  {drachen.flaeche}")   # Ausgabe: 30.0
+
+# 4. Symmetrische Trapeze (Bonus)
+trapez = GleichschenkligesTrapez(a=10, c=6, h=4)
+print(f"Fläche Trapez:  {trapez.flaeche}")    # Ausgabe: 32.0
+
+# 5. Runde Formen
+kreis = Kreis(zentrum=p1, radius=10)
+print(f"Umfang Kreis:   {kreis.umfang:.2f}")  # Ausgabe: 62.83
+```
+
+Form (ABC)
+├── Ellipse (Ramanujan)
+│ └── Kreis
+└── Polygon (Gauß-Formel)
+├── Dreieck
+│ ├── RechtwinkligesDreieck
+│ └── GleichschenkligesDreieck
+│ └── GleichseitigesDreieck
+└── Viereck
+└── Trapez
+├── GleichschenkligesTrapez
+└── Parallelogramm
+├── Raute
+│ └── Quadrat
+└── Rechteck
+└── Quadrat

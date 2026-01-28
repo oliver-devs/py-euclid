@@ -1,2 +1,7 @@
 from .polygon import Polygon
-from .dreieck import Dreieck, RechtwinkligesDreieck
+from .dreieck import (
+    Dreieck,
+    RechtwinkligesDreieck,
+    GleichschenkligesDreieck,
+    GleichseitigesDreieck,
+)

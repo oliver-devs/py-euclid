@@ -1,3 +1,4 @@
+import math
 from .polygon import Polygon
 from ..primitive.elemente import Punkt
 
@@ -10,14 +11,31 @@ class Dreieck(Polygon):
 
 
 class RechtwinkligesDreieck(Dreieck):
-    """
-    Ein Dreieck mit einem 90° Winkel.
-    Wir definieren es einfach über die zwei Katheten a und b.
-    """
+    """Ein Dreieck mit einem 90° Winkel (Kathete a, Kathete b)."""
 
     def __init__(self, a: float, b: float):
-        # Wir setzen es in den Ursprung (0,0) für einfache Berechnung
-        p1 = Punkt(0, 0)
-        p2 = Punkt(a, 0)
-        p3 = Punkt(0, b)
-        super().__init__(p1, p2, p3)
+        super().__init__(Punkt(0, 0), Punkt(a, 0), Punkt(0, b))
+
+
+class GleichschenkligesDreieck(Dreieck):
+    """2 Seiten sind gleich lang (Schenkel). Konstruiert über Basis und Höhe."""
+
+    def __init__(self, basis: float, hoehe: float):
+        # Wir bauen es symmetrisch um die Y-Achse
+        halbe_basis = basis / 2
+        super().__init__(
+            Punkt(-halbe_basis, 0),  # Links
+            Punkt(halbe_basis, 0),  # Rechts
+            Punkt(0, hoehe),  # Spitze oben
+        )
+
+
+class GleichseitigesDreieck(GleichschenkligesDreieck):
+    """Alle 3 Seiten sind gleich lang. Das perfekte Dreieck."""
+
+    def __init__(self, seitenlaenge: float):
+        # Berechnung der Höhe im gleichseitigen Dreieck:
+        # h = a * sqrt(3) / 2
+        hoehe = seitenlaenge * math.sqrt(3) / 2
+        # Wir nutzen die Logik vom gleichschenkligen Dreieck
+        super().__init__(seitenlaenge, hoehe)

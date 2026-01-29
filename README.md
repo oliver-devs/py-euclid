@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="dein-bild.svg" alt="Oliver Header">
-</p>
-
 # py-euclid 📐
 
 Eine professionelle, objektorientierte Geometrie-Bibliothek für Python.

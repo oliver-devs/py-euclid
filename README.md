@@ -3,13 +3,15 @@
 Eine professionelle, objektorientierte Geometrie-Bibliothek für Python.
 Entwickelt mit Fokus auf saubere Architektur (OOP), Unveränderlichkeit (Immutability) und mathematische Präzision.
 
-> **Status:** v0.5.0 (Stable)
+> **Status:** v0.6.0 (Feature Complete)
 
 ## ✨ Features
 
 - **Pure Python:** Keine externen Abhängigkeiten (Zero Dependencies).
 - **Objektorientiertes Design:** Logische Vererbungshierarchien.
 - **Type Safety:** Durchgängige Nutzung von Type Hints und Dataclasses.
+- **Smart Objects:** Formen sind vergleichbar (`>` / `<`) und sortierbar.
+- **Remote Data:** Integrierter Loader für Missionsdaten (JSON) via Web/GitHub.
 - **Robust:** Unveränderliche primitive Datentypen (`frozen=True`) verhindern Seiteneffekte.
 - **Mathematische Präzision:**
     - Flächenberechnung beliebiger Polygone mittels **Gaußscher Trapezformel** (Shoelace Formula).
@@ -25,6 +27,9 @@ git clone [https://github.com/oliver-devs/py-euclid.git](https://github.com/oliv
 
 # 2. In das Verzeichnis wechseln
 cd py-euclid
+
+# 3. Paket installieren (im Editable-Mode)
+pip install -e .
 
 # 3. Paket installieren (im Editable-Mode)
 pip install -e .
@@ -82,10 +87,13 @@ graph TD
     GleichschenkligesDreieck --> GleichseitigesDreieck
 
     Viereck --> Trapez
+    Viereck --> Drachen
+    Drachen --> Raute
     Trapez --> GleichschenkligesTrapez
     Trapez --> Parallelogramm
-    Parallelogramm --> Raute
+    GleichschenkligesTrapez --> Rechteck
     Parallelogramm --> Rechteck
+    Parallelogramm --> Raute
 
     Raute --> Quadrat
     Rechteck --> Quadrat

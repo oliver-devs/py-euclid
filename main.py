@@ -17,7 +17,7 @@ def print_header(titel):
 
 
 def main():
-    print_header("NASA GEOMETRIE DEMO v1.0")
+    print_header("GEOMETRIE DEMO v0.6")
 
     # 1. Ein Punkt
     p1 = Punkt(0, 0)
@@ -59,6 +59,48 @@ def main():
     print_header("⚖️ Gleichschenkliges Trapez")
     print(f"Unten: 10, Oben: 6, Höhe: 4")
     print(f"Fläche:      {sym_trapez.flaeche:.2f} (Sollte 32.0 sein)")
+
+    # 10. Test-Daten erzeugen
+    center = Punkt(0, 0)
+
+    quadrat = Quadrat(a=2)
+    drache = Drachen(e=10, f=6, abstand_oben=2)
+    kreis = Kreis(zentrum=center, radius=3)
+
+    # Eine wilde, unsortierte Liste
+    mission_payload = [drachen, quadrat, kreis]
+
+    print(f"\n Unsortierte Fracht:")
+    for form in mission_payload:
+        # Hier testen wir das neue __repr__!
+        # Ausgabe sollte sein wie: <Quadrat (A=4.00)>
+        print(f"  Build-Log: {form}")
+
+    # 11. Der Sortier-Test
+    print("\n  Starte Sortier-Algorithmus...")
+    mission_payload.sort()  # Das ruft im Hintergrund das __lt__ auf
+
+    print("✅ Sortierte Fracht (nach Größe):")
+    for form in mission_payload:
+        print(f"   Result: {form}")
+
+    # 12. Validierung der Reihenfolge
+    kleinstes = mission_payload[0]
+    groesstes = mission_payload[-1]
+
+    if kleinstes == quadrat and groesstes == drache:
+        print("\n✅ Test bestanden: Die Reihenfolge ist mathematisch korrekt.")
+    else:
+        print("\n❌ Test fehlgeschlagen: Die Reihenfolge ist inkorrekt.")
+
+    # 13. Direkter Vergleich (Das Duell)
+    print("\nDuell: Drache vs. Kreis")
+    if drache > kreis:
+        print("🏆 Der Drache gewinnt! (größere Fläche)")
+    elif drache < kreis:
+        print("🏆 Der Kreis gewinnt! (größere Fläche)")
+    else:
+        print("🤝 Unentschieden! Beide haben die gleiche Fläche.")
 
 
 if __name__ == "__main__":

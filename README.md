@@ -30,9 +30,6 @@ cd py-euclid
 
 # 3. Paket installieren (im Editable-Mode)
 pip install -e .
-
-# 3. Paket installieren (im Editable-Mode)
-pip install -e .
 ```
 
 ## 🚀 Verwendung
@@ -41,21 +38,21 @@ Nach der Installation kann die Bibliothek in jedem Python-Skript importiert werd
 
 ```python
 from geometrie.primitive.elemente import Punkt
-from geometrie.figuren.viereck import Drachenviereck, Quadrat, GleichschenkligesTrapez
+from geometrie.figuren.viereck import Drachen, Quadrat, GleichschenkligesTrapez
 from geometrie.figuren.ellipse import Kreis
+from geometrie.daten.loader import lade_daten_von_github
 
 # 1. Punkte definieren (Immutable)
 p1 = Punkt(0, 0)
 
 # 2. Komplexe Formen erstellen
-# Ein Quadrat ist mathematisch ein Rechteck und eine Raute
+# Ein Quadrat erbt bei uns vom Rechteck
 quadrat = Quadrat(a=5)
 print(f"Fläche Quadrat: {quadrat.flaeche}")  # Ausgabe: 25.0
 
 # 3. Spezielle Formen
-# Berechnung via Diagonalen (e, f)
-drachen = Drachenviereck(e=10, f=6, abstand_oben=2)
-print(f"Fläche Drache:  {drachen.flaeche}")   # Ausgabe: 30.0
+drache = Drachen(e=10, f=6, abstand_oben=2)
+print(f"Fläche Drache:  {drache.flaeche}")   # Ausgabe: 30.0
 
 # 4. Symmetrische Trapeze (Bonus)
 trapez = GleichschenkligesTrapez(a=10, c=6, h=4)
@@ -64,6 +61,16 @@ print(f"Fläche Trapez:  {trapez.flaeche}")    # Ausgabe: 32.0
 # 5. Runde Formen
 kreis = Kreis(zentrum=p1, radius=10)
 print(f"Umfang Kreis:   {kreis.umfang:.2f}")  # Ausgabe: 62.83
+
+# 6. Vergleiche & Sortierung (Neu in v0.6)
+if quadrat < drache:
+    print("Das Quadrat ist kleiner als der Drache.")
+
+# 7. Daten aus der Cloud laden (JSON)
+# Lädt Formen direkt aus der 'data.json' im Repository
+forms = lade_daten_von_github()
+forms.sort()
+print(f"Geladene Formen: {len(forms)}")
 ```
 
 ## 🏗 Architektur & Klassenhierarchie
@@ -88,10 +95,10 @@ graph TD
 
     Viereck --> Trapez
     Viereck --> Drachen
-    Drachen --> Raute
+
     Trapez --> GleichschenkligesTrapez
     Trapez --> Parallelogramm
-    GleichschenkligesTrapez --> Rechteck
+    
     Parallelogramm --> Rechteck
     Parallelogramm --> Raute
 

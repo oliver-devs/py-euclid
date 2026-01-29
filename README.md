@@ -89,7 +89,4 @@ graph TD
 
     Raute --> Quadrat
     Rechteck --> Quadrat
-
-    style Quadrat fill:#f9f,stroke:#333,stroke-width:2px
-    style Form fill:#eee,stroke:#333,stroke-dasharray: 5 5
 ```

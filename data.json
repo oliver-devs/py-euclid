@@ -1,0 +1,18 @@
+[
+    {
+        "typ": "Quadrat",
+        "params": { "a": 3.0 }
+    },
+    {
+        "typ": "Kreis",
+        "params": { "radius": 10.0 }
+    },
+    {
+        "typ": "Drachenviereck",
+        "params": { "e": 100.0, "f": 50.0, "abstand_oben": 20.0 }
+    },
+    {
+        "typ": "Quadrat",
+        "params": { "a": 50.0 }
+    }
+]
